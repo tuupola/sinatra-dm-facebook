@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# JavaScript and everything not found goes to ssh tunnel
+RewriteCond %{REQUEST_FILENAME} !-f [OR]
+RewriteCond %{REQUEST_FILENAME} ^(.+)\.js$ [OR]
+RewriteCond %{REQUEST_FILENAME} ^(.+)\.css$
+RewriteRule (.*) http://127.0.0.1:4567%{REQUEST_URI} [L,P,QSA]
+

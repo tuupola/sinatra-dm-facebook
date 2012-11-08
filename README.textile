@@ -1,0 +1,49 @@
+h1. Setup info
+
+Application should be deployed to host which uses "Phusion Passenger":http://www.modrails.com/. Thus no .htaccess rules for redirecting traffic from Apache to Thin are needed.
+
+Setup application and restart Apache. Setup is done only once. This command is run on your local computer. Password for user sinatra@host is asked several times. You can get rid off this by setting the ssh keys.
+
+<pre>
+  > rake vlad:setup
+  > rake vlad:deploy
+</pre>
+
+Command _rake vlad:setup_ needs to be run only once. This creates the directory structure needed for Vlad.
+
+h1. Development
+
+For easy development you can route traffic from live server to your local computer using ssh tunnel. Following command will setup .htaccess file on live server which router all traffic to your laptop via ssh tunnel.
+
+<pre>
+  > rake dev:start
+</pre>
+
+You can exit development mode by pressing ctrl-c on your local computer.
+
+Make sure you have committed and pushed all changes to GitHub. Use Vlad to deploy changes and restart the live application server. Password for user sinatra@host is asked several times. You can get rid off this by setting the ssh keys.
+
+<pre>
+  > git commit -a
+  > git push
+  > rake vlad:deploy
+</pre>
+
+Go to Facebook and check everything works as expected.
+
+h1. Setting up ssh keys
+
+To get rid off entering password several times setup the keys first. This can be done by running command:
+
+<pre>
+  cat .ssh/id_rsa.pub | ssh sinatra@host "cat >> .ssh/authorized_keys"
+</pre>
+
+If ssh still asks passwords make sure file permissions in .ssh folder are like the following:
+
+<pre>
+  drwx------ 2 tuupola tuupola 4096 Sep 30 10:22 .
+  drwx------ 3 tuupola tuupola 4096 Sep 30 10:15 ..
+  -rw------- 1 tuupola tuupola  399 Sep 30 10:24 authorized_keys
+  -rw-r--r-- 1 tuupola tuupola  241 Sep 30 10:16 known_hosts
+</pre>  

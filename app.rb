@@ -4,11 +4,11 @@ DataMapper::Logger.new($stdout, :debug)
 
 configure :development do
   #DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/example.db")
-  DataMapper.setup(:default, "mysql://example:example@mysql.taevas.com/example")
+  DataMapper.setup(:default, "mysql://example:example@mysql.example.com/example_sinatra")
 end
 
 configure :production do
-  DataMapper.setup(:default, "mysql://example:example@localhost/example")
+  DataMapper.setup(:default, "mysql://example:example@localhost/example_sinatra")
 end
 
 require "models.rb" # Models

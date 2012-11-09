@@ -1,7 +1,9 @@
 require "bundler/vlad"
 
-set :application, "sinatra-dm-facebook"
-set :repository, "git@github.com:taevas/#{application}.git"
+set :user, "tuupola"
+set :application, "sinatra-dm-facebook" 
+
+set :repository, "git@github.com:#{user}/#{application}.git"
 set :user, "sinatra"
 set :server, "#{application}.taevas.com"
 set :domain, "#{user}@#{server}"
